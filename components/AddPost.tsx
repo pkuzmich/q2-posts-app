@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createPost } from '@/lib/jsonbin'
+import Input from './Input'
 
 export default function AddPost() {
   const [title, setTitle] = useState('')
@@ -47,7 +48,7 @@ export default function AddPost() {
   }
 
   // Handle input changes with real-time validation
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const value = e.target.value
     setTitle(value)
     setValidationErrors((prev) => ({
@@ -56,7 +57,7 @@ export default function AddPost() {
     }))
   }
 
-  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleContentChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const value = e.target.value
     setContent(value)
     setValidationErrors((prev) => ({
@@ -65,7 +66,7 @@ export default function AddPost() {
     }))
   }
 
-  const handleAuthorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAuthorChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const value = e.target.value
     setAuthor(value)
     setValidationErrors((prev) => ({
@@ -121,54 +122,33 @@ export default function AddPost() {
     <div className="add-post">
       <form onSubmit={handleSubmit} className="add-post__form">
         {error && <div className="error__info">{error}</div>}
-
         {success && <div className="success">✅ Příspěvek vytvořen úspěšně! Přesměrování...</div>}
-
-        <div>
-          <label htmlFor="title" className="block mb-1">
-            Titulek
-          </label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={handleTitleChange}
-            className={`form-input ${validationErrors.title ? 'error__border' : 'success-border'}`}
-            disabled={isSubmitting}
-          />
-          {validationErrors.title && <p className="error__field">{validationErrors.title}</p>}
-        </div>
-
-        <div>
-          <label htmlFor="content" className="block mb-1">
-            Obsah
-          </label>
-          <textarea
-            id="content"
-            value={content}
-            onChange={handleContentChange}
-            rows={8}
-            className={`form-textarea ${validationErrors.content ? 'error__border' : 'success-border'}`}
-            disabled={isSubmitting}
-          />
-          {validationErrors.content && <p className="error__field">{validationErrors.content}</p>}
-        </div>
-
-        <div>
-          <label htmlFor="author" className="block mb-1">
-            Autor
-          </label>
-          <input
-            type="text"
-            id="author"
-            value={author}
-            onChange={handleAuthorChange}
-            className={`form-input ${validationErrors.author ? 'error__border' : 'success-border'}`}
-            disabled={isSubmitting}
-          />
-          {validationErrors.author && <p className="error__field">{validationErrors.author}</p>}
-        </div>
-
+        <Input
+          id="title"
+          label="Titulek"
+          value={title}
+          onChange={handleTitleChange}
+          error={validationErrors.title}
+          disabled={isSubmitting}
+        />
+        <Input
+          id="content"
+          label="Obsah"
+          type="textarea"
+          value={content}
+          onChange={handleContentChange}
+          error={validationErrors.content}
+          disabled={isSubmitting}
+          rows={8}
+        />
+        <Input
+          id="author"
+          label="Autor"
+          value={author}
+          onChange={handleAuthorChange}
+          error={validationErrors.author}
+          disabled={isSubmitting}
+        />
         <div className="flex gap-4">
           <button type="submit" disabled={isSubmitting} className="add-post__btn">
             {isSubmitting ? 'Odesílám...' : 'Odeslat'}
