@@ -3,12 +3,14 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { findPostById } from '@/lib/jsonbin'
 
 interface PageContent {
   title: string
 }
 
-const getPageContent = (pathname: string): PageContent => {
+const getPageContent = (pathname: string, postTitle?: string): PageContent => {
   switch (pathname) {
     case '/':
       return {
@@ -25,7 +27,7 @@ const getPageContent = (pathname: string): PageContent => {
     default:
       if (pathname.startsWith('/posts/')) {
         return {
-          title: 'Title'
+          title: postTitle || ''
         }
       }
       return {
@@ -36,7 +38,31 @@ const getPageContent = (pathname: string): PageContent => {
 
 export default function Slider() {
   const pathname = usePathname()
-  const content = getPageContent(pathname)
+  const [postTitle, setPostTitle] = useState<string | undefined>(undefined)
+
+  useEffect(() => {
+    const fetchPostTitle = async () => {
+      // Check if we're on a post detail page
+      const postIdMatch = pathname.match(/^\/posts\/(\d+)$/)
+      if (postIdMatch) {
+        try {
+          const postId = parseInt(postIdMatch[1])
+          const post = await findPostById(postId)
+          if (post) {
+            setPostTitle(post.title)
+          }
+        } catch (error) {
+          console.error('Failed to fetch post title:', error)
+        }
+      } else {
+        setPostTitle(undefined)
+      }
+    }
+
+    fetchPostTitle()
+  }, [pathname])
+
+  const content = getPageContent(pathname, postTitle)
   return (
     <div className="slider">
       <header className="header">
