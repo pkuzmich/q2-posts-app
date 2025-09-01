@@ -4,12 +4,18 @@ import PostComponent from './Post'
 const Posts = async () => {
   try {
     const posts = await fetchPosts()
+    
+    // Sort posts by createdAt date, most recent first
+    const sortedPosts = posts.sort((a, b) => 
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    )
+    
     return (
       <div className="posts">
-        {posts.length === 0 ? (
+        {sortedPosts.length === 0 ? (
           <p className="text-gray-500">Žádné příspěvky nejsou k dispozici. Vytvořte svůj první příspěvek!</p>
         ) : (
-          posts.map((post: Post) => <PostComponent post={post} key={post.id} />)
+          sortedPosts.map((post: Post) => <PostComponent post={post} key={post.id} />)
         )}
       </div>
     )
