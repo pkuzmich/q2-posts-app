@@ -120,7 +120,7 @@ export default function AddPost() {
   return (
     <div className="add-post">
       <form onSubmit={handleSubmit} className="add-post__form">
-        {error && <div className="error-message">{error}</div>}
+        {error && <div className="error__info">{error}</div>}
 
         {success && <div className="success">✅ Příspěvek vytvořen úspěšně! Přesměrování...</div>}
 
@@ -133,10 +133,10 @@ export default function AddPost() {
             id="title"
             value={title}
             onChange={handleTitleChange}
-            className={`form-input ${validationErrors.title ? 'error-border' : 'success-border'}`}
+            className={`form-input ${validationErrors.title ? 'error__border' : 'success-border'}`}
             disabled={isSubmitting}
           />
-          {validationErrors.title && <p className="error-field">{validationErrors.title}</p>}
+          {validationErrors.title && <p className="error__field">{validationErrors.title}</p>}
         </div>
 
         <div>
@@ -148,10 +148,10 @@ export default function AddPost() {
             value={content}
             onChange={handleContentChange}
             rows={8}
-            className={`form-textarea ${validationErrors.content ? 'error-border' : 'success-border'}`}
+            className={`form-textarea ${validationErrors.content ? 'error__border' : 'success-border'}`}
             disabled={isSubmitting}
           />
-          {validationErrors.content && <p className="error-field">{validationErrors.content}</p>}
+          {validationErrors.content && <p className="error__field">{validationErrors.content}</p>}
         </div>
 
         <div>
@@ -163,10 +163,10 @@ export default function AddPost() {
             id="author"
             value={author}
             onChange={handleAuthorChange}
-            className={`form-input ${validationErrors.author ? 'error-border' : 'success-border'}`}
+            className={`form-input ${validationErrors.author ? 'error__border' : 'success-border'}`}
             disabled={isSubmitting}
           />
-          {validationErrors.author && <p className="error-field">{validationErrors.author}</p>}
+          {validationErrors.author && <p className="error__field">{validationErrors.author}</p>}
         </div>
 
         <div className="flex gap-4">

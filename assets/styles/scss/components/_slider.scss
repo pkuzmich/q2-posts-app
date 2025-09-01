@@ -1,6 +1,6 @@
 .slider {
   position: relative;
-  height: 60vh;
+  height: 600px;
   min-height: 400px;
   background-image: url('/blog-bg.jpg');
   background-size: cover;
@@ -21,7 +21,7 @@
 }
 
 .slider__title {
-  font-size: $font-size-2xl;
+  font-size: $font-size-4xl;
   margin-bottom: 0;
   line-height: $line-height-tight;
 }

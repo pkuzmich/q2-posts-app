@@ -1,0 +1,16 @@
+.error {
+  &__info {
+    background-color: $error-color;
+    color: $white;
+    padding: $spacing-4;
+    border-radius: $spacing-2;
+  }
+
+  &__field {
+    color: $error-color;
+  }
+
+  &__border {
+    border-color: $error-color;
+  }
+}

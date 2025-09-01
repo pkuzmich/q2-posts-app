@@ -121,7 +121,7 @@
   @include button-base;
   background-color: $gray-color;
   color: $white;
-  padding: $spacing-3 $spacing-12;
+  padding: $spacing-3 $spacing-16;
   border-radius: $spacing-1;
 
   &:hover:not(:disabled) {
@@ -132,7 +132,7 @@
 // Container mixin
 @mixin container {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1300px;
   margin: 0 auto;
   padding-left: $spacing-6;
   padding-right: $spacing-6;

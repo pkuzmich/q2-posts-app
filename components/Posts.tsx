@@ -4,12 +4,12 @@ import PostComponent from './Post'
 const Posts = async () => {
   try {
     const posts = await fetchPosts()
-    
+
     // Sort posts by createdAt date, most recent first
-    const sortedPosts = posts.sort((a, b) => 
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    const sortedPosts = posts.sort(
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     )
-    
+
     return (
       <div className="posts">
         {sortedPosts.length === 0 ? (
