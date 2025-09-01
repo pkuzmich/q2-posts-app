@@ -1,0 +1,27 @@
+.slider {
+  position: relative;
+  height: 60vh;
+  min-height: 400px;
+  background-image: url('/blog-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+.slider__content {
+  flex-grow: 1;
+  position: relative;
+  z-index: 2;
+  color: $white;
+  padding: 0 $spacing-4;
+  display: grid;
+  align-items: center;
+}
+
+.slider__title {
+  font-size: $font-size-2xl;
+  margin-bottom: 0;
+  line-height: $line-height-tight;
+}

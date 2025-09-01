@@ -1,0 +1,144 @@
+// Media query mixins
+@mixin mobile-only {
+  @media (max-width: #{$breakpoint-sm - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media (min-width: #{$breakpoint-sm}) {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @media (min-width: #{$breakpoint-md}) {
+    @content;
+  }
+}
+
+@mixin large-desktop-up {
+  @media (min-width: #{$breakpoint-lg}) {
+    @content;
+  }
+}
+
+@mixin xl-desktop-up {
+  @media (min-width: #{$breakpoint-xl}) {
+    @content;
+  }
+}
+
+// Flexbox mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// Typography mixins
+@mixin heading-1 {
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+
+  @include desktop-up {
+    font-size: $font-size-5xl;
+  }
+
+  @include large-desktop-up {
+    font-size: $font-size-6xl;
+  }
+}
+
+@mixin heading-2 {
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+
+  @include desktop-up {
+    font-size: $font-size-4xl;
+  }
+}
+
+@mixin heading-3 {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-snug;
+}
+
+@mixin body-large {
+  font-size: $font-size-lg;
+  line-height: $line-height-relaxed;
+}
+
+@mixin body-base {
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+}
+
+@mixin body-small {
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+}
+
+// Button mixins
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background-color: $gray-color;
+  color: $white;
+  padding: $spacing-3 $spacing-12;
+  border-radius: $spacing-1;
+
+  &:hover:not(:disabled) {
+    background-color: darken($gray-color, 10%);
+  }
+}
+
+// Container mixin
+@mixin container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: $spacing-6;
+  padding-right: $spacing-6;
+
+  @include desktop-up {
+    padding-left: $spacing-8;
+    padding-right: $spacing-8;
+  }
+}

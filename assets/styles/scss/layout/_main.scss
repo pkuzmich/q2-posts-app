@@ -1,0 +1,20 @@
+// Main content layout
+.main-content {
+  padding: $spacing-8 0;
+  background-color: #f8f9fa;
+
+  @include mobile-only {
+    padding: $spacing-6 0;
+  }
+
+  // Container for content
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 $spacing-4;
+
+    @include desktop-up {
+      padding: 0 $spacing-6;
+    }
+  }
+}

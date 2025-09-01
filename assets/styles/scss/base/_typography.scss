@@ -1,0 +1,75 @@
+// Base typography styles
+body {
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-normal;
+  color: $primary-color;
+  background-color: $white;
+}
+
+// Headings
+h1 {
+  @include heading-1;
+  margin-bottom: $spacing-6;
+}
+
+h2 {
+  @include heading-2;
+  margin-bottom: $spacing-5;
+}
+
+h3 {
+  @include heading-3;
+  margin-bottom: $spacing-4;
+}
+
+h4 {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-snug;
+  margin-bottom: $spacing-3;
+}
+
+// Paragraphs
+p {
+  @include body-base;
+  margin-bottom: $spacing-4;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Links
+a {
+  color: $primary-color;
+  text-decoration: none;
+}
+
+// Lists
+ul,
+ol {
+  margin-bottom: $spacing-4;
+  padding-left: $spacing-6;
+}
+
+li {
+  margin-bottom: $spacing-1;
+}
+
+// Small text
+small {
+  font-size: $font-size-sm;
+}
+
+// Strong and emphasis
+strong,
+b {
+  font-weight: $font-weight-semibold;
+}
+
+em,
+i {
+  font-style: italic;
+}

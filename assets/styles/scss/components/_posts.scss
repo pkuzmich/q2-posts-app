@@ -1,0 +1,13 @@
+.posts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-10 $spacing-6;
+
+  @include tablet-up {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include large-desktop-up {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

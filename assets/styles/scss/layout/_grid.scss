@@ -1,0 +1,22 @@
+.container {
+  @include container;
+}
+
+.container--fluid {
+  width: 100%;
+  padding-left: $spacing-6;
+  padding-right: $spacing-6;
+
+  @include desktop-up {
+    padding-left: $spacing-8;
+    padding-right: $spacing-8;
+  }
+}
+
+.container--narrow {
+  max-width: 48rem;
+}
+
+.container--wide {
+  max-width: 90rem;
+}

@@ -1,0 +1,18 @@
+.blog {
+  &__container {
+    @include container;
+  }
+
+  &__header {
+    margin-bottom: $spacing-8;
+
+    @include desktop-up {
+      margin-bottom: $spacing-10;
+    }
+  }
+
+  &__title {
+    @include heading-2;
+    margin-bottom: $spacing-4;
+  }
+}
