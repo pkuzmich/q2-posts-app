@@ -1,0 +1,20 @@
+.post {
+  gap: $spacing-16;
+
+  &__author {
+    flex-shrink: 0;
+    margin-right: $spacing-6;
+    position: relative;
+
+    &::after {
+      content: '';
+      height: 2px;
+      width: 34px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: calc(-1.5rem - 34px);
+      background-color: $gray-color-light;
+    }
+  }
+}
