@@ -1,13 +1,8 @@
-import Link from 'next/link'
-import Posts from '@/components/Posts'
+import PostComponent from '@/components/Posts'
 
-const PostsPage = () => {
-  return (
-    <>
-      <Posts />
-      <Link href="/posts/add">Add Post</Link>
-    </>
-  )
+// Enable ISR with revalidation every 60 seconds
+export const revalidate = 60
+
+export default async function PostsPage() {
+  return <PostComponent />
 }
-
-export default PostsPage
