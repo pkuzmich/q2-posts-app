@@ -1,6 +1,7 @@
 .main-content {
   padding: $spacing-8 0;
   background-color: #f8f9fa;
+  flex: 1;
 
   @include mobile-only {
     padding: $spacing-6 0;
