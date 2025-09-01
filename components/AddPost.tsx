@@ -119,62 +119,29 @@ export default function AddPost() {
   }
 
   return (
-    <div className="p-4 max-w-2xl mx-auto">
-      <Link href="/posts" className="text-blue-600 hover:text-blue-800 mb-4 inline-block">
-        ← Vrátit se k příspěvkům
-      </Link>
+    <div className="add-post">
+      <form onSubmit={handleSubmit} className="add-post__form">
+        {error && <div className="error-message">{error}</div>}
 
-      <h1 className="text-2xl font-bold mb-6">Přidat nový příspěvek</h1>
-
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">{error}</div>
-        )}
-
-        {success && (
-          <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded">
-            ✅ Příspěvek vytvořen úspěšně! Přesměrování...
-          </div>
-        )}
+        {success && <div className="success">✅ Příspěvek vytvořen úspěšně! Přesměrování...</div>}
 
         <div>
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
-            Název
+          <label htmlFor="title" className="block mb-1">
+            Titulek
           </label>
           <input
             type="text"
             id="title"
             value={title}
             onChange={handleTitleChange}
-            className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-              validationErrors.title ? 'border-red-300 bg-red-50' : 'border-gray-300'
-            }`}
-            placeholder="Zadejte název ( minimálně 3 znaky dlouhý)"
+            className={`form-input ${validationErrors.title ? 'error-border' : 'success-border'}`}
             disabled={isSubmitting}
           />
-          {validationErrors.title && <p className="text-red-500 text-sm mt-1">{validationErrors.title}</p>}
+          {validationErrors.title && <p className="error-field">{validationErrors.title}</p>}
         </div>
 
         <div>
-          <label htmlFor="author" className="block text-sm font-medium text-gray-700 mb-1">
-            Autor
-          </label>
-          <input
-            type="text"
-            id="author"
-            value={author}
-            onChange={handleAuthorChange}
-            className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-              validationErrors.author ? 'border-red-300 bg-red-50' : 'border-gray-300'
-            }`}
-            placeholder="Zadejte autora"
-            disabled={isSubmitting}
-          />
-          {validationErrors.author && <p className="text-red-500 text-sm mt-1">{validationErrors.author}</p>}
-        </div>
-
-        <div>
-          <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="content" className="block mb-1">
             Obsah
           </label>
           <textarea
@@ -182,32 +149,31 @@ export default function AddPost() {
             value={content}
             onChange={handleContentChange}
             rows={8}
-            className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-              validationErrors.content ? 'border-red-300 bg-red-50' : 'border-gray-300'
-            }`}
-            placeholder="Zadejte obsah ( minimálně 10 znaků dlouhý)"
+            className={`form-textarea ${validationErrors.content ? 'error-border' : 'success-border'}`}
             disabled={isSubmitting}
           />
-          {validationErrors.content && (
-            <p className="text-red-500 text-sm mt-1">{validationErrors.content}</p>
-          )}
+          {validationErrors.content && <p className="error-field">{validationErrors.content}</p>}
+        </div>
+
+        <div>
+          <label htmlFor="author" className="block mb-1">
+            Autor
+          </label>
+          <input
+            type="text"
+            id="author"
+            value={author}
+            onChange={handleAuthorChange}
+            className={`form-input ${validationErrors.author ? 'error-border' : 'success-border'}`}
+            disabled={isSubmitting}
+          />
+          {validationErrors.author && <p className="error-field">{validationErrors.author}</p>}
         </div>
 
         <div className="flex gap-4">
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isSubmitting ? 'Creating...' : 'Create Post'}
+          <button type="submit" disabled={isSubmitting} className="add-post__btn">
+            {isSubmitting ? 'Odesílám...' : 'Odeslat'}
           </button>
-
-          <Link
-            href="/posts"
-            className="bg-gray-300 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-          >
-            Zpět
-          </Link>
         </div>
       </form>
     </div>
