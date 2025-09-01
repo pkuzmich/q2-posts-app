@@ -1,0 +1,39 @@
+.nav {
+  &__list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: $spacing-6;
+    margin-bottom: 0;
+
+    @include desktop-up {
+      gap: $spacing-8;
+    }
+  }
+
+  &__link {
+    color: $white;
+    font-weight: $font-weight-medium;
+    text-decoration: none;
+
+    &:hover {
+      color: rgba($white, 0.8);
+      text-decoration: none;
+    }
+
+    &--active {
+      color: $white;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: $orange-color;
+      }
+    }
+  }
+}

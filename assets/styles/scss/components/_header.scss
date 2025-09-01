@@ -1,0 +1,35 @@
+.header {
+  background-color: rgba($black, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: $z-index-sticky;
+}
+
+.header__container {
+  @include flex-between;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+
+  @include desktop-up {
+    padding: 0 $spacing-6;
+    min-height: 5rem;
+  }
+}
+
+.header__logo {
+  @include flex-center;
+
+  a {
+    display: block;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  img {
+    height: auto;
+    max-height: 54px;
+  }
+}
