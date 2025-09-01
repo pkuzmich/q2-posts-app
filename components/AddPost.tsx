@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { createPost } from '@/lib/jsonbin'
 
 export default function AddPost() {

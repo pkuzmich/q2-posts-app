@@ -1,7 +1,7 @@
 // JSONBin.io API configuration and utilities
 export const JSONBIN_CONFIG = {
   BASE_URL: 'https://api.jsonbin.io/v3',
-  BIN_ID: '68b524d7d0ea881f406d992e',
+  BIN_ID: '68b5b034ae596e708fdeee92',
   MASTER_KEY: '$2a$10$vpXc.Bu8NW0a4AZOzG1jsO9NqErYQRl4L3cowDeVUK0F2Ot3M9IJy',
   ACCESS_KEY: '$2a$10$1YEdQ6UOh2NyWayZKNNAqOlFRMf4HdjNJj2klb8SOcNWdJsO.3qJm'
 }
@@ -11,6 +11,7 @@ export interface Post {
   title: string
   text: string
   author: string
+  image: string
   createdAt: string
 }
 
@@ -73,11 +74,13 @@ export const createPost = async (title: string, text: string, author: string): P
   const currentPosts = await fetchPosts()
 
   // Create new post with auto-incremented ID
+  const postId = Math.max(...currentPosts.map((p) => p.id), 0) + 1
   const newPost: Post = {
-    id: Math.max(...currentPosts.map((p) => p.id), 0) + 1,
+    id: postId,
     title,
     text,
     author,
+    image: `https://cataas.com/cat?${postId}`,
     createdAt: new Date().toISOString()
   }
 

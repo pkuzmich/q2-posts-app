@@ -7,17 +7,21 @@ interface PostProps {
 }
 
 export default function Post({ post }: PostProps) {
+  const { id, title, image, text, author, createdAt } = post
+
+  const imageUrl = image || `/placeholder.jpg`
+
   return (
     <div className="post">
-      <Link href={`/posts/${post.id}`} className="flex flex-col h-full">
-        <Image src="/placeholder.jpg" alt={post.title} width={310} height={280} />
+      <Link href={`/posts/${id}`} className="flex flex-col h-full">
+        <Image src={imageUrl} alt={title} width={310} height={280} className="object-cover" />
         <div className="flex-grow flex flex-col pt-4">
           <div className="mb-6 flex justify-between items-center">
-            <p className="mb-0">{post.author}</p>
-            <p>{new Date(post.createdAt).toLocaleDateString()}</p>
+            <p className="mb-0">{author}</p>
+            <p>{new Date(createdAt).toLocaleDateString()}</p>
           </div>
-          <h3 className="mb-6">{post.title}</h3>
-          <p className="line-clamp-3 mt-auto">{post.text}</p>
+          <h3 className="mb-6">{title}</h3>
+          <p className="line-clamp-3 mt-auto">{text}</p>
         </div>
       </Link>
     </div>
