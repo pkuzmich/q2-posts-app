@@ -12,6 +12,7 @@ export default function AddPost() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
+  const [createdPostId, setCreatedPostId] = useState<string | null>(null)
   const [validationErrors, setValidationErrors] = useState({
     title: '',
     content: '',
@@ -75,6 +76,18 @@ export default function AddPost() {
     }))
   }
 
+  const clearForm = () => {
+    setTitle('')
+    setContent('')
+    setAuthor('')
+    setValidationErrors({
+      title: '',
+      content: '',
+      author: ''
+    })
+    setError('')
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -97,32 +110,42 @@ export default function AddPost() {
 
     setIsSubmitting(true)
     setError('')
-    setSuccess(false)
 
     try {
       const newPost = await createPost(title.trim(), content.trim(), author.trim())
 
-      console.log('Příspěvek vytvořen úspěšně:', newPost)
-
-      // Show success status briefly before redirecting
+      // Clear form and show success message
+      clearForm()
+      setCreatedPostId(String(newPost.id))
       setSuccess(true)
       setIsSubmitting(false)
 
-      // Redirect after a short delay to show success message
+      // Redirect after showing success message
       setTimeout(() => {
         router.push(`/posts/${newPost.id}`)
-      }, 1500)
+      }, 2000)
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Nepodařilo se vytvořit příspěvek')
+      setError(error instanceof Error ? error.message : 'Nepodařilo se vytvořit článek')
       setIsSubmitting(false)
     }
+  }
+
+  if (success) {
+    return (
+      <div className="add-post">
+        <div className="success-message">
+          <div className="success-icon">✅</div>
+          <h2>Článek úspěšně vytvořen!</h2>
+          <p className="redirect-info">Přesměrování na článek za chvíli...</p>
+        </div>
+      </div>
+    )
   }
 
   return (
     <div className="add-post">
       <form onSubmit={handleSubmit} className="add-post__form">
         {error && <div className="error__info">{error}</div>}
-        {success && <div className="success">✅ Příspěvek vytvořen úspěšně! Přesměrování...</div>}
         <Input
           id="title"
           label="Titulek"
