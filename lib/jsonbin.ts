@@ -1,9 +1,9 @@
 // JSONBin.io API configuration and utilities
 export const JSONBIN_CONFIG = {
-  BASE_URL: 'https://api.jsonbin.io/v3',
-  BIN_ID: '68b5b034ae596e708fdeee92',
-  MASTER_KEY: '$2a$10$vpXc.Bu8NW0a4AZOzG1jsO9NqErYQRl4L3cowDeVUK0F2Ot3M9IJy',
-  ACCESS_KEY: '$2a$10$1YEdQ6UOh2NyWayZKNNAqOlFRMf4HdjNJj2klb8SOcNWdJsO.3qJm'
+  BASE_URL: process.env.NEXT_PUBLIC_JSONBIN_BASE_URL,
+  BIN_ID: process.env.NEXT_PUBLIC_JSONBIN_BIN_ID,
+  MASTER_KEY: process.env.NEXT_PUBLIC_JSONBIN_MASTER_KEY,
+  ACCESS_KEY: process.env.NEXT_PUBLIC_JSONBIN_ACCESS_KEY
 }
 
 export interface Post {
@@ -30,11 +30,11 @@ export interface JSONBinResponse {
 export const getJSONBinHeaders = (method: 'GET' | 'PUT' = 'GET') => {
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
-    'X-Master-Key': JSONBIN_CONFIG.MASTER_KEY
+    'X-Master-Key': `${JSONBIN_CONFIG.MASTER_KEY}`
   }
 
   if (method === 'PUT') {
-    headers['X-Access-Key'] = JSONBIN_CONFIG.ACCESS_KEY
+    headers['X-Access-Key'] = `${JSONBIN_CONFIG.ACCESS_KEY}`
   }
 
   return headers
@@ -42,13 +42,6 @@ export const getJSONBinHeaders = (method: 'GET' | 'PUT' = 'GET') => {
 
 // Fetch posts from JSONBin
 export const fetchPosts = async (): Promise<Post[]> => {
-  console.log('JSONBin Config:', {
-    BASE_URL: JSONBIN_CONFIG.BASE_URL,
-    BIN_ID: JSONBIN_CONFIG.BIN_ID,
-    MASTER_KEY: JSONBIN_CONFIG.MASTER_KEY ? '***' : 'MISSING',
-    ACCESS_KEY: JSONBIN_CONFIG.ACCESS_KEY ? '***' : 'MISSING'
-  })
-
   const headers = getJSONBinHeaders('GET')
   console.log('Request headers:', headers)
 
