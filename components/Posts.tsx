@@ -22,12 +22,9 @@ const Posts = async () => {
   } catch (error) {
     console.error('Failed to fetch posts:', error)
     return (
-      <div className="p-4">
-        <h1 className="text-2xl font-bold mb-4">Příspěvky</h1>
-        <p className="text-red-500">Nepodařilo se načíst příspěvky</p>
-        <p className="text-sm text-gray-600 mt-2">
-          Error: {error instanceof Error ? error.message : 'Unknown error'}
-        </p>
+      <div className="error">
+        <p className="error__info">Nepodařilo se načíst příspěvky</p>
+        <p className="mt-2">Error: {error instanceof Error ? error.message : 'Unknown error'}</p>
       </div>
     )
   }
