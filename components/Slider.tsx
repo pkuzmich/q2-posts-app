@@ -39,6 +39,7 @@ const getPageContent = (pathname: string, postTitle?: string): PageContent => {
 export default function Slider() {
   const pathname = usePathname()
   const [postTitle, setPostTitle] = useState<string | undefined>(undefined)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const fetchPostTitle = async () => {
@@ -61,6 +62,15 @@ export default function Slider() {
 
     fetchPostTitle()
   }, [pathname])
+
+  // Close mobile menu when pathname changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false)
+  }, [pathname])
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
 
   const content = getPageContent(pathname, postTitle)
   return (
@@ -90,6 +100,53 @@ export default function Slider() {
               </li>
             </ul>
           </nav>
+
+          {/* Mobile Navigation */}
+          <button
+            className={`mobile-nav__toggle ${isMobileMenuOpen ? 'mobile-nav__toggle--active' : ''}`}
+            onClick={toggleMobileMenu}
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMobileMenuOpen}
+          >
+            <span className="mobile-nav__toggle-line"></span>
+            <span className="mobile-nav__toggle-line"></span>
+            <span className="mobile-nav__toggle-line"></span>
+          </button>
+
+          {/* Mobile Menu Overlay */}
+          <div className={`mobile-nav__overlay ${isMobileMenuOpen ? 'mobile-nav__overlay--active' : ''}`}>
+            <nav className="mobile-nav__menu">
+              <ul className="mobile-nav__list">
+                <li className="mobile-nav__item">
+                  <Link
+                    href="/"
+                    className={`mobile-nav__link ${pathname === '/' ? 'mobile-nav__link--active' : ''}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Blog
+                  </Link>
+                </li>
+                <li className="mobile-nav__item">
+                  <Link
+                    href="/posts/add"
+                    className={`mobile-nav__link ${pathname === '/posts/add' ? 'mobile-nav__link--active' : ''}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Přidat článek
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          {/* Background Overlay */}
+          {isMobileMenuOpen && (
+            <div 
+              className="mobile-nav__backdrop" 
+              onClick={() => setIsMobileMenuOpen(false)}
+              aria-hidden="true"
+            />
+          )}
         </div>
       </header>
       <div className="slider__content container">

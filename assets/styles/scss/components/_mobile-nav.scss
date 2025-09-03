@@ -1,0 +1,129 @@
+// Mobile Navigation Styles
+.mobile-nav__toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+  position: relative;
+
+  @include mobile-only {
+    display: flex;
+  }
+}
+
+.mobile-nav__toggle-line {
+  width: 100%;
+  height: 2px;
+  background-color: $white;
+  transition: all 0.3s ease;
+  transform-origin: center;
+
+  .mobile-nav__toggle--active & {
+    &:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    &:nth-child(2) {
+      opacity: 0;
+    }
+
+    &:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+  }
+}
+
+.mobile-nav__overlay {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 280px;
+  height: 100vh;
+  background-color: rgba($black, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+
+  @include mobile-only {
+    display: block;
+  }
+
+  @include tablet-up {
+    display: none;
+  }
+
+  &--active {
+    right: 0;
+  }
+}
+
+.mobile-nav__menu {
+  padding: 80px $spacing-6 $spacing-6;
+  height: 100%;
+}
+
+.mobile-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-nav__item {
+  margin-bottom: $spacing-6;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.mobile-nav__link {
+  display: block;
+  color: $white;
+  text-decoration: none;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  padding: 0 $spacing-4;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: $orange-color;
+  }
+
+  &--active {
+    color: $orange-color;
+    font-weight: $font-weight-semibold;
+  }
+}
+
+.mobile-nav__backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba($black, 0.5);
+  z-index: 999;
+  backdrop-filter: blur(2px);
+
+  @include mobile-only {
+    display: block;
+  }
+
+  @include tablet-up {
+    display: none;
+  }
+}
+
+// Hide desktop navigation on mobile
+.nav {
+  @include mobile-only {
+    display: none;
+  }
+}
