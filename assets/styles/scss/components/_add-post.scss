@@ -10,10 +10,6 @@
     flex-direction: column;
     gap: $spacing-4;
   }
-
-  &__btn {
-    @include button-primary;
-  }
 }
 
 .success-border {
@@ -60,6 +56,7 @@
   }
 }
 
+// Responsive Design for Success Message
 @media (max-width: 640px) {
   .success-message {
     padding: 2rem 1rem;

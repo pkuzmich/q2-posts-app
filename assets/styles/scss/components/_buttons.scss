@@ -1,0 +1,21 @@
+// Button components
+.btn {
+  @include button-base;
+  padding: $spacing-3 $spacing-6;
+  font-size: $font-size-base;
+
+  // Size variants
+  &--sm {
+    padding: $spacing-2 $spacing-4;
+    font-size: $font-size-sm;
+  }
+
+  &--lg {
+    padding: $spacing-4 $spacing-8;
+    font-size: $font-size-lg;
+  }
+
+  &--primary {
+    @include button-primary;
+  }
+}

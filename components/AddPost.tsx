@@ -173,7 +173,7 @@ export default function AddPost() {
           disabled={isSubmitting}
         />
         <div className="flex gap-4">
-          <button type="submit" disabled={isSubmitting} className="add-post__btn">
+          <button type="submit" disabled={isSubmitting} className="btn btn--primary">
             {isSubmitting ? 'Odesílám...' : 'Odeslat'}
           </button>
         </div>

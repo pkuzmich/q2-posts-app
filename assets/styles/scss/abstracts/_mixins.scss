@@ -123,9 +123,10 @@
   color: $white;
   padding: $spacing-3 $spacing-16;
   border-radius: $spacing-1;
+  transition: all 0.3s ease;
 
   &:hover:not(:disabled) {
-    background-color: darken($gray-color, 10%);
+    background-color: darken($orange-color, 10%);
   }
 }
 

@@ -16,10 +16,6 @@ const getPageContent = (pathname: string, postTitle?: string): PageContent => {
       return {
         title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
       }
-    case '/posts':
-      return {
-        title: 'All Posts'
-      }
     case '/posts/add':
       return {
         title: 'Přidani članku'
@@ -129,7 +125,9 @@ export default function Slider() {
                 <li className="mobile-nav__item">
                   <Link
                     href="/posts/add"
-                    className={`mobile-nav__link ${pathname === '/posts/add' ? 'mobile-nav__link--active' : ''}`}
+                    className={`mobile-nav__link ${
+                      pathname === '/posts/add' ? 'mobile-nav__link--active' : ''
+                    }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Přidat článek
@@ -141,8 +139,8 @@ export default function Slider() {
 
           {/* Background Overlay */}
           {isMobileMenuOpen && (
-            <div 
-              className="mobile-nav__backdrop" 
+            <div
+              className="mobile-nav__backdrop"
               onClick={() => setIsMobileMenuOpen(false)}
               aria-hidden="true"
             />
