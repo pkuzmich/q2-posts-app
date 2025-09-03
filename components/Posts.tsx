@@ -1,5 +1,5 @@
 import { fetchPosts, type Post } from '@/lib/jsonbin'
-import PostComponent from './Post'
+import PostItem from './PostItem'
 
 const Posts = async () => {
   try {
@@ -15,7 +15,7 @@ const Posts = async () => {
         {sortedPosts.length === 0 ? (
           <p className="text-gray-500">Žádné příspěvky nejsou k dispozici. Vytvořte svůj první příspěvek!</p>
         ) : (
-          sortedPosts.map((post: Post) => <PostComponent post={post} key={post.id} />)
+          sortedPosts.map((post: Post) => <PostItem post={post} key={post.id} />)
         )}
       </div>
     )

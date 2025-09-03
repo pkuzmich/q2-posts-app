@@ -41,8 +41,8 @@ export default async function PostPage({ params }: PostPageProps) {
         <ScrollToTop />
         <article className="post flex">
           <p className="flex-shrink-0 post__author">{post.author}</p>
-          <div className="prose max-w-none">
-            <p className="text-gray-800 leading-relaxed whitespace-pre-wrap">{post.text}</p>
+          <div className="max-w-none">
+            <p>{post.text}</p>
           </div>
         </article>
       </div>

@@ -1,6 +1,14 @@
 .post {
-  gap: $spacing-16;
-  margin: $spacing-10 0;
+  gap: $spacing-8;
+
+  @include tablet-up {
+    gap: $spacing-16;
+    margin: $spacing-10 0;
+  }
+
+  @include mobile-only {
+    flex-direction: column;
+  }
 
   &__author {
     flex-shrink: 0;
@@ -12,15 +20,16 @@
       height: 2px;
       width: 34px;
       position: absolute;
-      top: 10px;
-      right: calc(-1.5rem - 34px);
       background-color: $gray-color-light;
-    }
-  }
-}
+      bottom: -$spacing-6;
+      left: 0;
 
-.post-item {
-  &__image {
-    border-radius: $spacing-2;
+      @include tablet-up {
+        bottom: auto;
+        left: auto;
+        top: 10px;
+        right: calc(-1.5rem - 34px);
+      }
+    }
   }
 }

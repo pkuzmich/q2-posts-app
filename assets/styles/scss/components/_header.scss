@@ -12,7 +12,6 @@
   z-index: 2;
 
   @include desktop-up {
-    padding: 0 $spacing-6;
     min-height: 5rem;
   }
 }
